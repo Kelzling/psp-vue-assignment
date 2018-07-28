@@ -1,0 +1,43 @@
+body {
+  width: 40rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3em;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+p {
+  margin: .5em 0;
+}
+
+.response, .history {
+  width: 75%;
+}
+
+.user-input-container {
+  display: flex;
+  width: 75%;
+}
+
+.guess-input {
+  width: 75%;
+  margin: 0 .5em;
+}
+
+.guess-submit {
+  width: 20%;
+  margin: 0 .5em;
+}

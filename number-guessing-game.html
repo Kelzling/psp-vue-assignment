@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Guessing Games</title>
+  <link rel="stylesheet" href="css\stylesheet.css"></link>
+</head>
+<body>
+  <div id="static-container">
+    <h1>Number Guessing Games</h1>
+    <input type="button" class="version-btn" id="selected" value="Version 1">
+  </div>
+  
+  <div id="game-container">
+    <h2>Instructions</h2>
+    <p id="instructions-text">{{ instructions }}</p>
+    
+    <div class='user-input-container'>
+      <input class="guess-input" id="v1-input" placeholder='{{ message }}'>
+      <input type="button" class="guess-submit" id="v1-submit" value="submit">
+    </div>
+    
+    <p class="response" id="v1-response">{{ response }}</p>
+    
+    <p class="history" id="v1-history">{{ history }}</p>
+  </div>
+</body>
+</html>
