@@ -3,6 +3,9 @@
 <head>
   <title>Number Guessing Games</title>
   <link rel="stylesheet" href="css\stylesheet.css"></link>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="src/game1.js"></script>
+  <script>window.onload = main</script>
 </head>
 <body>
   <div id="static-container">
@@ -15,8 +18,11 @@
     <p id="instructions-text">{{ instructions }}</p>
     
     <div class='user-input-container'>
-      <input class="guess-input" id="v1-input" placeholder='{{ message }}'>
-      <input type="button" class="guess-submit" id="v1-submit" value="submit">
+      <input class="guess-input" id="v1-input" v-bind:placeholder="placeholder" v-model="userInput">
+      <input type="button" class="game-start" id="v1-start" value="Start Game" v-if="startSeen" @click="startGame">
+      <input type="button" class="guess-submit" id="v1-submit" value="submit" v-if="submitSeen" @click="compareGuess">
+      <input type="button" class="game-restart" id="v1-restart" value="Restart Game?" v-if="restartSeen" @click="startGame">
+      <!-- Note to self: Could probably use Vue components to do stuff like this in the future. -->
     </div>
     
     <p class="response" id="v1-response">{{ response }}</p>
