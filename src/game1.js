@@ -1,12 +1,14 @@
-function main () {
-  var game1 = new Vue({
+/* global Vue */
+
+function main () { // eslint-disable-line no-unused-vars
+  var game1 = new Vue({ // eslint-disable-line no-unused-vars
     el: '#game-container',
     data: {
       // messages
       instructions: 'instructions go here',
       responseOptions: [ 'try higher!',
-                         'try lower!',
-                         'Please enter a number between 0-99' ],
+        'try lower!',
+        'Please enter a number between 0-99' ],
       response: '',
       history: '',
       placeholder: 'Enter your guess',
@@ -36,7 +38,7 @@ function main () {
       checkInput: function () {
         this.userGuess = Number(this.userInput)
         let isValid = false
-        if(!isNaN(this.userGuess)) {
+        if (!isNaN(this.userGuess)) {
           this.userGuess = Math.round(this.userGuess)
           if (this.userGuess >= 0 || this.userGuess <= 99) {
             isValid = true
