@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+  <div id="a-div">{{ greeting() }}</div>
+
+  <script>
+    class Methods {
+      static hello () {
+        return 'hello world'
+      }
+    }
+    
+    let anApp = new Vue({
+      el: '#a-div',
+      methods: {
+        greeting: Methods.hello
+      }
+    })
+  </script>
+</body>
+</html>

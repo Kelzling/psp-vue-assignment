@@ -25,7 +25,6 @@ function main () {
         // ensure all variables are reset upon game start
         this.response = ''
         this.history = ''
-        this.userInput = ''
         this.userGuess = 0
         this.guessCount = 0
         this.number = Math.round(Math.random() * 100)
@@ -40,7 +39,7 @@ function main () {
         if(!isNaN(this.userGuess)) {
           this.userGuess = Math.round(this.userGuess)
           if (this.userGuess >= 0 || this.userGuess <= 99) {
-            isValid = true;
+            isValid = true
           }
         } else {
           // input is invalid
