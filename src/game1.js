@@ -40,7 +40,7 @@ function main () { // eslint-disable-line no-unused-vars
         let isValid = false
         if (!isNaN(this.userGuess)) {
           this.userGuess = Math.round(this.userGuess)
-          if (this.userGuess >= 0 || this.userGuess <= 99) {
+          if (0 <= this.userGuess && this.userGuess <= 99) {
             isValid = true
           }
         } else {
