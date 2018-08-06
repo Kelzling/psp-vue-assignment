@@ -6,18 +6,37 @@
 <body>
 
   <div id="a-div">{{ greeting() }}</div>
+  
+  <div id="another-div">{{ farewell() }}</div>
 
   <script>
     class Methods {
+      constructor() {
+        // yes
+      }
+      
       static hello () {
         return 'hello world'
       }
+      
+      goodbye () {
+        return 'farewell, cruel world'
+      }
     }
+    
+    var anObject = new Methods()
     
     let anApp = new Vue({
       el: '#a-div',
       methods: {
         greeting: Methods.hello
+      }
+    })
+    
+    let anotherApp = new Vue({
+      el: '#another-div',
+      methods: {
+        farewell: anObject.goodbye
       }
     })
   </script>
