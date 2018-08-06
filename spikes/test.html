@@ -8,6 +8,8 @@
   <div id="a-div">{{ greeting() }}</div>
   
   <div id="another-div">{{ farewell() }}</div>
+  
+  <div id="many-div">{{ number }} {{ stuff }} {{ displayStuff() }}</div>
 
   <script>
     class Methods {
@@ -38,6 +40,31 @@
       methods: {
         farewell: anObject.goodbye
       }
+    })
+    
+    
+    class Attributes {
+      constructor (number = '42', letter = 'K', magic = true) {
+        this.num = number
+        this.lett = letter
+        this.science = magic
+      }
+    }
+    
+    let someAttributes = new Attributes()
+    
+    let manyApp = new Vue({
+      el: '#many-div',
+      data: {
+        number: someAttributes.num,
+        stuff: someAttributes
+      }/* ,
+      methods:{
+        displayStuff: () => {
+          let result = this.stuff.lett
+          return result
+        }
+      } */ // This doesn't work. Apparently it doesn't want you to be able to access properties of an object stored by the View instance. Properties of outside objects work fine, and displaying the entire object works fine, but any attempted calls to this.stuff.(something) gave the error 'cannot access property (something) of undefined'
     })
   </script>
 </body>
