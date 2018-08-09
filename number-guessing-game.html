@@ -15,7 +15,7 @@
   
   <div id="game-container">
     <h2>Instructions</h2>
-    <p id="instructions-text">{{ instructions }}</p>
+    <p class="instructions-text">{{ instructions }}</p>
     
     <div class='user-input-container'>
       <input class="guess-input" id="v1-input" v-bind:placeholder="placeholder" v-model="userInput">
@@ -28,6 +28,23 @@
     <p class="response" id="v1-response">{{ response }}</p>
     
     <p class="history" id="v1-history">{{ history }}</p>
+  </div>
+  
+  <div id="game2-container">
+    <h2>Instructions</h2>
+    <p class="instructions-text">{{ instructions }}</p>
+    
+    <div class='user-input-container'>
+      <input class="guess-input" id="v2-input" v-bind:placeholder="placeholder" v-model="userInput">
+      <!-- <input type="button" class="game-start" id="v2-start" value="Start Game" v-if="startSeen" @click="startGame"> -->
+      <input type="button" class="guess-submit" id="v2-submit" value="submit" v-if="submitSeen" @click="compareGuess">
+      <!-- <input type="button" class="game-restart" id="v2-restart" value="Restart Game?" v-if="restartSeen" @click="startGame"> -->
+      <!-- Note to self: Could probably use Vue components to do stuff like this in the future. -->
+    </div>
+    
+    <p class="response" id="v2-response">{{ response }}</p>
+    
+    <p class="history" id="v2-history">{{ history }}</p>
   </div>
 </body>
 </html>
