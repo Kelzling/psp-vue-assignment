@@ -1,6 +1,11 @@
 /* global Vue */
 
 function main () { // eslint-disable-line no-unused-vars
+  Vue.component('game-instructions', {
+      props: ['instructions'],
+      template: '<div><h2>Instructions</h2> {{ instructions }}</div>'
+    })
+
   var game1 = new Vue({ // eslint-disable-line no-unused-vars
     el: '#game-container',
     data: {

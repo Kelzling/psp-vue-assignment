@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id='yes'>
+    <game-instructions v-bind='{instructions}'></game-instructions>
+    
+    <game-btn v-bind='{button: startButton, method: startMethod}' v-if="displayBtn === 'start'"></game-btn>
+  </div>
+  <script>
+    Vue.component('game-instructions', {
+      props: ['instructions'],
+      template: '<div><h2>Instructions</h2> {{ instructions }}</div>'
+    })
+    
+    Vue.component('game-btn', {
+      props: ['button', 'method', 'displayBtn'],
+      template: '<input type="button" class="gameBtn" v-bind:value="button.value" v-on:click="method">'
+    })
+    
+    class Method {
+      static startGame() { console.log('test 2') }
+    }
+    
+    var app = new Vue({
+      el: '#yes',
+      data: {
+        instructions: 'Instructions go here',
+        startButton: {value: 'Start Game'},
+        startMethod: Method.startGame,
+        displayBtn: 'start'
+      },
+      methods: {
+        startGame() {
+          console.log('test')
+        }
+      }
+    })
+    
+    
+</script>
+
+</body>
+</html>
