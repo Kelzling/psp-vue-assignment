@@ -7,7 +7,7 @@
   <div id='yes'>
     <game-instructions v-bind='{instructions}'></game-instructions>
     
-    <game-btn v-bind='{button: startButton, method: startMethod}' v-if="displayBtn === 'start'"></game-btn>
+    <game-btn v-bind='{button: startButton, method: startGame}' v-if="displayBtn === 'start'"></game-btn>
   </div>
   <script>
     Vue.component('game-instructions', {
@@ -26,16 +26,16 @@
     
     var app = new Vue({
       el: '#yes',
+      methods: {
+        startGame() {
+          console.log('test')
+        }
+      },
       data: {
         instructions: 'Instructions go here',
         startButton: {value: 'Start Game'},
         startMethod: Method.startGame,
         displayBtn: 'start'
-      },
-      methods: {
-        startGame() {
-          console.log('test')
-        }
       }
     })
     
