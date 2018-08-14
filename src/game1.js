@@ -2,10 +2,10 @@
 
 function main () { // eslint-disable-line no-unused-vars
   Vue.component('game-instructions', {
-      props: ['instructions'],
-      template: '<div><h2>Instructions</h2> {{ instructions }}</div>'
-    })
-    
+    props: ['instructions'],
+    template: '<div><h2>Instructions</h2> {{ instructions }}</div>'
+  })
+
   Vue.component('game-btn', {
     props: ['newButton', 'method'],
     template: '<input type="button" class="gameBtn" v-bind:value="newButton.value" @click="method">'
@@ -47,7 +47,7 @@ function main () { // eslint-disable-line no-unused-vars
         let isValid = false
         if (!isNaN(this.userGuess)) {
           this.userGuess = Math.round(this.userGuess)
-          if (0 <= this.userGuess && this.userGuess <= 99) {
+          if (this.userGuess >= 0 && this.userGuess <= 99) {
             isValid = true
           }
         } else {
