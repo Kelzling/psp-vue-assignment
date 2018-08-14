@@ -50,11 +50,11 @@ p {
 }
 
 .guess-input {
-  width: 75%;
+  width: 70%;
   margin: 0 .5em;
 }
 
-.guess-submit {
-  width: 20%;
+.gameBtn {
+  width: 25%;
   margin: 0 .5em;
 }
