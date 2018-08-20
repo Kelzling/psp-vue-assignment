@@ -23,7 +23,7 @@ function main () { // eslint-disable-line no-unused-vars
       history: '',
       placeholder: 'Enter your guess',
       // for hiding buttons
-      btnSeen: 'start',
+      btnSeen: 'Start Game',
       // variables
       buttons: [{value: 'Start Game'}, {value: 'Submit Guess'}, {value: 'Restart Game?'}],
       userInput: '',
@@ -32,6 +32,14 @@ function main () { // eslint-disable-line no-unused-vars
       number: 0
     },
     methods: {
+      swapButton: (newBtn) {
+        let validButtons = this.buttons.map(btn => btn.value)
+        if (validButtons.include(newBtn) {
+          btnSeen: newBtn
+        } else {
+          console.warn('That button is not a valid option')
+        }
+      },
       startGame: function () {
         // ensure all variables are reset upon game start
         this.response = ''
@@ -40,7 +48,7 @@ function main () { // eslint-disable-line no-unused-vars
         this.guessCount = 0
         this.number = Math.round(Math.random() * 100)
         // hide undesired buttons
-        this.btnSeen = 'submit'
+        this.swapButton('Submit Guess')
       },
       checkInput: function () {
         this.userGuess = Number(this.userInput)
@@ -67,7 +75,7 @@ function main () { // eslint-disable-line no-unused-vars
           } else if (this.userGuess === this.number) {
             // this one would show 'undefined' instead of guessCount if I put it in the responseOptions array... might be worth investigating.
             this.response = `You got it in ${this.guessCount} trials!`
-            this.btnSeen = 'restart'
+            this.swapButton('Restart Game?')
           }
         } else {
           this.response = this.responseOptions[2]
