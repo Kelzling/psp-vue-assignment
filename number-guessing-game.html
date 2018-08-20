@@ -20,9 +20,9 @@
     
     <div class='user-input-container'>
       <input class="guess-input" id="v1-input" v-bind:placeholder="placeholder" v-model="userInput">
-      <game-btn v-bind='{newButton: buttons[0], method: startGame}' v-if="btnSeen === 'start'"></game-btn>
-      <game-btn v-bind='{newButton: buttons[1], method: compareGuess}' v-if="btnSeen === 'submit'"></game-btn>
-      <game-btn v-bind='{newButton: buttons[2], method: startGame}' v-if="btnSeen === 'restart'"></game-btn>
+      <game-btn v-bind='{newButton: buttons[0], method: startGame}' v-if="btnSeen === 'Start Game'"></game-btn>
+      <game-btn v-bind='{newButton: buttons[1], method: compareGuess}' v-if="btnSeen === 'Submit Guess'"></game-btn>
+      <game-btn v-bind='{newButton: buttons[2], method: startGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
     <!--   <input type="button" class="game-start" id="v1-start" value="Start Game" v-if="startSeen" @click="startGame">
       <input type="button" class="guess-submit" id="v1-submit" value="submit" v-if="submitSeen" @click="compareGuess">
       <input type="button" class="game-restart" id="v1-restart" value="Restart Game?" v-if="restartSeen" @click="startGame"> -->
