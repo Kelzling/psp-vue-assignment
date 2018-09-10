@@ -1,5 +1,7 @@
 /* global Vue */
 
+var VERBOSE = true
+
 function main () { // eslint-disable-line no-unused-vars
   Vue.component('game-instructions', {
     props: ['instructions'],
@@ -140,13 +142,15 @@ function main () { // eslint-disable-line no-unused-vars
             this.response = `You got it in ${this.guessCount} trial`
             this.response += (this.guessCount === 1) ? `!` : `s!`
             this.btnSeen = 'restart'
+          } else if (this.userGuess <= this.number + 9 && this.userGuess >= this.number - 9) {
+            this.response = this.responseOptions[0]
+          } else if (this.userGuess <= this.number + 19 && this.userGuess >= this.number - 19) {
+            this.response = this.responseOptions[1]
+          } else if (this.userGuess <= this.number + 39 && this.userGuess >= this.number - 39) {
+            this.response = this.responseOptions[2]
+          } else {
+            this.response = this.responseOptions[3]
           }
-          else if (this.userGuess <= this.number + 9 && this.userGuess >= this.number - 9) this.response = this.responseOptions[0];
-          else if (this.userGuess <= this.number + 19 && this.userGuess >= this.number - 19) this.response = this.responseOptions[1];
-          else if (this.userGuess <= this.number + 39 && this.userGuess >= this.number - 39) this.response = this.responseOptions[2];
-          else this.response = this.responseOptions[3];
-        } else {
-          this.response = this.responseOptions[2]
         }
       }
     }
