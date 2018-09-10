@@ -32,10 +32,10 @@ function main () { // eslint-disable-line no-unused-vars
       number: 0
     },
     methods: {
-      swapButton: (newBtn) {
+      swapButton: function (newBtn) {
         let validButtons = this.buttons.map(btn => btn.value)
-        if (validButtons.include(newBtn) {
-          btnSeen: newBtn
+        if (validButtons.includes(newBtn)) {
+          this.btnSeen = newBtn
         } else {
           console.warn('That button is not a valid option')
         }
