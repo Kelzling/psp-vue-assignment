@@ -46,7 +46,7 @@ function main () { // eslint-disable-line no-unused-vars
         this.swapButton('Submit Guess')
         this.brain.startGame()
       },
-      clickHandler: function () {
+      guessHandler: function () {
         if (this.userInput) {
           // only runs if the user has entered something into the user input box
           let output = this.brain.turnHandler(this.userInput)
@@ -91,7 +91,7 @@ function main () { // eslint-disable-line no-unused-vars
         this.swapButton('Submit Guess')
         this.brain.startGame()
       },
-      clickHandler: function () {
+      guessHandler: function () {
         if (this.userInput) {
           // only runs if the user has entered something into the user input box
           let output = this.brain.turnHandler(this.userInput)

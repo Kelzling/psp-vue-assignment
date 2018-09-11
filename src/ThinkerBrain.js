@@ -8,7 +8,18 @@ class ThinkerBrain {
     this.guessHistory = []
   }
   
+  get winResponse() {
+    let output = `You got it in ${this.guessCount} trial`
+    if (this.guessCount === 1) {
+      output += `!`
+    } else {
+      output += `s!`
+    }
+    return output
+  }
+  
   get formattedHistory() {
+    // formats the history in an average looking string. needs reworking
     let output = ''
     if (this.guessHistory) {
       this.guessHistory.forEach((num, index) => output += `${index + 1}: ${num}, `)
@@ -17,18 +28,17 @@ class ThinkerBrain {
   }
   
   startGame() {
-    // reset game variables and generate random number
+    // (re)set game variables and generate random number
     this.guessCount = 0
     this.guessHistory = []
-    // this.number = Math.round(Math.random() * 100)
-    this.number = 50
+    this.number = Math.round(Math.random() * 100)
     this.gameState = 'in-progress'
     if (VERBOSE) {
       // verbose logging for testing purposes
       console.log(`History: ${this.guessHistory}
       guessCount: ${this.guessCount}
       random number: ${this.number}
-	  game state: ${this.gameState}`)
+	    game state: ${this.gameState}`)
     }
   }
   
@@ -62,7 +72,7 @@ class ThinkerBrain {
         response = this.responseOptions.tooLow
       } else if (userGuess === this.number) {
         // if guess is correct
-        response = `You got it in ${this.guessCount} trials!`
+        response = this.winResponse
         this.gameState = 'finished'
       } else {
         // shouldn't be able to get here
@@ -71,7 +81,7 @@ class ThinkerBrain {
     } else if (this.gameType === 'HotCold') {
       if (userGuess === this.number) {
         // if guess is correct
-        response = `You got it in ${this.guessCount} trials!`
+        response = this.winResponse
         this.gameState = 'finished'
       } else if (userGuess <= this.number + 9 && userGuess >= this.number - 9) {
         response = this.responseOptions.hot
