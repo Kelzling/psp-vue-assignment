@@ -62,40 +62,40 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
     }
     return isValid
   }
-
-  compareGuess (userGuess) {
+  
+  highLowGuess (userGuess) {
     let response = ''
-    if (this.gameType === 'HighLow') {
-      if (userGuess > this.number) {
-        // if guess is too high
-        response = this.responseOptions.tooHigh
-      } else if (userGuess < this.number) {
-        // if guess is too low
-        response = this.responseOptions.tooLow
-      } else if (userGuess === this.number) {
-        // if guess is correct
-        response = this.winResponse
-        this.gameState = 'finished'
-      } else {
-        // shouldn't be able to get here
-        console.warn('Guess makes no sense')
-      }
-    } else if (this.gameType === 'HotCold') {
-      if (userGuess === this.number) {
-        // if guess is correct
-        response = this.winResponse
-        this.gameState = 'finished'
-      } else if (userGuess <= this.number + 9 && userGuess >= this.number - 9) {
-        response = this.responseOptions.hot
-      } else if (userGuess <= this.number + 19 && userGuess >= this.number - 19) {
-        response = this.responseOptions.warm
-      } else if (userGuess <= this.number + 39 && userGuess >= this.number - 39) {
-        response = this.responseOptions.cool
-      } else {
-        response = this.responseOptions.cold
-      }
+    if (userGuess > this.number) {
+      // if guess is too high
+      response = this.responseOptions.tooHigh
+    } else if (userGuess < this.number) {
+      // if guess is too low
+      response = this.responseOptions.tooLow
+    } else if (userGuess === this.number) {
+      // if guess is correct
+      response = this.winResponse
+      this.gameState = 'finished'
     } else {
-      console.warn('Invalid Game Type')
+      // shouldn't be able to get here
+      console.warn('Guess makes no sense')
+    }
+    return response
+  }
+  
+  hotColdGuess (userGuess) {
+    let response = ''
+    if (userGuess === this.number) {
+      // if guess is correct
+      response = this.winResponse
+      this.gameState = 'finished'
+    } else if (userGuess <= this.number + 9 && userGuess >= this.number - 9) {
+      response = this.responseOptions.hot
+    } else if (userGuess <= this.number + 19 && userGuess >= this.number - 19) {
+      response = this.responseOptions.warm
+    } else if (userGuess <= this.number + 39 && userGuess >= this.number - 39) {
+      response = this.responseOptions.cool
+    } else {
+      response = this.responseOptions.cold
     }
     return response
   }
@@ -111,7 +111,11 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
         console.log(`Guess Count: ${this.guessCount}`)
       }
       this.guessHistory.push(userGuess)
-      response = this.compareGuess(userGuess)
+      if (this.gameType === 'HighLow') {
+        response = this.highLowGuess(userGuess)
+      } else if (this.gameType === 'HotCold') {
+        response = this.hotColdGuess(userGuess)
+      }
     } else {
       // else if input was not a valid guess
       response = 'Please Enter a number between 0-99'
