@@ -1,5 +1,7 @@
-class ThinkerBrain {
-  constructor(newGameType, newResponseOptions) {
+/* global VERBOSE */
+
+class ThinkerBrain { // eslint-disable-line no-unused-vars
+  constructor (newGameType, newResponseOptions) {
     this.gameType = newGameType
     this.responseOptions = newResponseOptions
     this.gameState = 'start-up'
@@ -7,8 +9,8 @@ class ThinkerBrain {
     this.guessCount = 0
     this.guessHistory = []
   }
-  
-  get winResponse() {
+
+  get winResponse () {
     let output = `You got it in ${this.guessCount} trial`
     if (this.guessCount === 1) {
       output += `!`
@@ -17,17 +19,17 @@ class ThinkerBrain {
     }
     return output
   }
-  
-  get formattedHistory() {
+
+  get formattedHistory () {
     // formats the history in an average looking string. needs reworking
     let output = ''
     if (this.guessHistory) {
-      this.guessHistory.forEach((num, index) => output += `${index + 1}: ${num}, `)
+      this.guessHistory.forEach(function (num, index) { output += `${index + 1}: ${num}, ` })
     }
     return output
   }
-  
-  startGame() {
+
+  startGame () {
     // (re)set game variables and generate random number
     this.guessCount = 0
     this.guessHistory = []
@@ -38,16 +40,16 @@ class ThinkerBrain {
       console.log(`History: ${this.guessHistory}
       guessCount: ${this.guessCount}
       random number: ${this.number}
-	    game state: ${this.gameState}`)
+      game state: ${this.gameState}`)
     }
   }
-  
-  processInput(userInput) {
+
+  processInput (userInput) {
     // process user input from string into a whole number
     return Math.round(Number(userInput))
   }
-  
-  validateInput(userGuess) {
+
+  validateInput (userGuess) {
     // ensure user input is a number within the valid range of 0-99
     let isValid = false
     if (!isNaN(userGuess)) {
@@ -60,8 +62,8 @@ class ThinkerBrain {
     }
     return isValid
   }
-  
-  compareGuess(userGuess) {
+
+  compareGuess (userGuess) {
     let response = ''
     if (this.gameType === 'HighLow') {
       if (userGuess > this.number) {
@@ -95,19 +97,19 @@ class ThinkerBrain {
     } else {
       console.warn('Invalid Game Type')
     }
-	return response
+    return response
   }
-  
-  turnHandler(userInput) {
+
+  turnHandler (userInput) {
     // function called by Vue, which passes the user input in it's raw form
     let response = ''
     let userGuess = this.processInput(userInput)
     if (this.validateInput(userGuess)) {
       // if input was valid, add to guessCount and history then call guess comparing logic
       this.guessCount += 1
-	  if (VERBOSE) {
-		console.log(`Guess Count: ${this.guessCount}`)
-	  }
+      if (VERBOSE) {
+        console.log(`Guess Count: ${this.guessCount}`)
+      }
       this.guessHistory.push(userGuess)
       response = this.compareGuess(userGuess)
     } else {
@@ -117,9 +119,3 @@ class ThinkerBrain {
     return {message: response, gameState: this.gameState}
   }
 }
-
-
-
-
-
-

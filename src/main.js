@@ -1,22 +1,22 @@
 /* global Vue, ThinkerBrain */
 
 // global vars for debugging etc
-var VERBOSE = true
+var VERBOSE = true // eslint-disable-line no-unused-vars
 
 // Vue Components
 Vue.component('game-instructions', {
-    props: ['instructions'],
-    template: '<div><h2>Instructions</h2> {{ instructions }}</div>'
-  })
+  props: ['instructions'],
+  template: '<div><h2>Instructions</h2> {{ instructions }}</div>'
+})
 
-  Vue.component('game-btn', {
-    props: ['newButton', 'method'],
-    template: '<input type="button" class="gameBtn" v-bind:value="newButton.value" @click="method">'
-  }) // couldn't figure out how to bind v-if successfully within a template at this stage
+Vue.component('game-btn', {
+  props: ['newButton', 'method'],
+  template: '<input type="button" class="gameBtn" v-bind:value="newButton.value" @click="method">'
+}) // couldn't figure out how to bind v-if successfully within a template at this stage
 
 // main function to be run after the initial HTML has loaded
 function main () { // eslint-disable-line no-unused-vars
-  var game1 = new Vue({
+  var game1 = new Vue({ // eslint-disable-line no-unused-vars
     el: '#game-container',
     data: {
       // messages
@@ -41,8 +41,8 @@ function main () { // eslint-disable-line no-unused-vars
         }
       },
       startGame: function () {
-        this.response = '',
-        this.history = '',
+        this.response = ''
+        this.history = ''
         this.swapButton('Submit Guess')
         this.brain.startGame()
       },
@@ -60,7 +60,7 @@ function main () { // eslint-disable-line no-unused-vars
       }
     }
   })
-  
+
   var game2 = new Vue({ // eslint-disable-line no-unused-vars
     el: '#game2-container',
     data: {
@@ -86,8 +86,8 @@ function main () { // eslint-disable-line no-unused-vars
         }
       },
       startGame: function () {
-        this.response = '',
-        this.history = '',
+        this.response = ''
+        this.history = ''
         this.swapButton('Submit Guess')
         this.brain.startGame()
       },
@@ -106,10 +106,3 @@ function main () { // eslint-disable-line no-unused-vars
     }
   })
 }
-
-
-
-
-
-
-
