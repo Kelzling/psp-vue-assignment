@@ -11,6 +11,7 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
   }
 
   get winResponse () {
+    // generates a nicely formatted you won response based upon whether trial needs to be plural or not
     let output = `You got it in ${this.guessCount} trial`
     if (this.guessCount === 1) {
       output += `!`
@@ -21,7 +22,7 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
   }
 
   get formattedHistory () {
-    // formats the history in an average looking string. needs reworking
+    // formats the history in an array of nice strings to be passed through for Vue to handle. Only shows the latest 10 items.
     let output = []
     let count = 1
     if (this.guessHistory) {
@@ -113,7 +114,7 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
     let userGuess = this.processInput(userInput)
     let response = ''
     if (this.validateInput(userGuess)) {
-      // if input was valid, add to guessCount and history then call guess comparing logic
+      // if input was valid, increment guess count and then call the correct guess comparing logic for the game type
       this.guessCount += 1
       if (VERBOSE) {
         console.log(`Guess Count: ${this.guessCount}`)
@@ -123,6 +124,7 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
       } else if (this.gameType === 'HotCold') {
         response = this.hotColdGuess(userGuess)
       }
+      // add the guess and response to the beginning of the history array (so it will display the most recent guess at the top of the history)
       this.guessHistory.unshift({guess: userGuess, message: response})
     } else {
       // else if input was not a valid guess
