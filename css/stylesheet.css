@@ -52,6 +52,7 @@ ul {
 .user-input-container {
   display: flex;
   width: 75%;
+  margin: 1em;
 }
 
 .guess-input {
@@ -64,8 +65,13 @@ ul {
   margin: 0 .5em;
 }
 
+.instructions {
+  margin: .5em;
+  text-align: center;
+}
+
 .user-response-btns {
   display: flex;
   justify-content: space-around;
-  margin: 1em;
+  margin: .5em;
 }

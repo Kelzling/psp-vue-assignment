@@ -6,7 +6,7 @@ var VERBOSE = true // eslint-disable-line no-unused-vars
 // Vue Components
 Vue.component('game-instructions', {
   props: ['instructions'],
-  template: '<div><h2>Instructions</h2> {{ instructions }}</div>'
+  template: '<div class="instructions"><h2>Instructions</h2> {{ instructions }}</div>'
 })
 
 Vue.component('game-btn', {
@@ -20,7 +20,7 @@ function main () { // eslint-disable-line no-unused-vars
     el: '#game-container',
     data: {
       // messages
-      instructions: 'instructions go here',
+      instructions: 'You guess the number! The game will generate a random number between 0 and 99. Enter your guess in the box below and the game will tell you if your guess is too high or too low!',
       history: '',
       placeholder: 'Enter your guess',
       // for swapping buttons
@@ -28,7 +28,7 @@ function main () { // eslint-disable-line no-unused-vars
       // other variables
       buttons: [{value: 'Start Game'}, {value: 'Submit Guess'}, {value: 'Restart Game?'}],
       userInput: '',
-      myBrain: new ThinkerBrain('HighLow', {tooHigh: 'Try a lower number!', tooLow: 'Try a higher number!'})
+      myBrain: new ThinkerBrain('HighLow', {tooHigh: 'Try lower!', tooLow: 'Try higher!'})
     },
     methods: {
       swapButton: function (newBtn) {
@@ -64,7 +64,7 @@ function main () { // eslint-disable-line no-unused-vars
     el: '#game2-container',
     data: {
       // messages
-      instructions: 'instructions go here',
+      instructions: 'You guess the number! The game will generate a random number between 0 and 99. Enter your guess in the box below and the game will tell you if you are COLD (more than 40 from the target number), COOL (within 20-39 of the target number), WARM (within 10-19 of the target number), or HOT (within 9 of the target number).',
       response: '',
       history: '',
       placeholder: 'Enter your guess',
@@ -73,7 +73,7 @@ function main () { // eslint-disable-line no-unused-vars
       // other variables
       buttons: [{value: 'Start Game'}, {value: 'Submit Guess'}, {value: 'Restart Game?'}],
       userInput: '',
-      myBrain: new ThinkerBrain('HotCold', {hot: 'Too Hot! (+/- 1-9)', warm: 'Getting Warm! (+/- 10-19)', cool: 'Cool... (+/- 20-39)', cold: 'Brr, cold! (+/- 40+)'})
+      myBrain: new ThinkerBrain('HotCold', {hot: 'HOT', warm: 'WARM', cool: 'COOL', cold: 'COLD'})
     },
     methods: {
       swapButton: function (newBtn) {
@@ -108,7 +108,7 @@ function main () { // eslint-disable-line no-unused-vars
   var game3 = new Vue({ // eslint-disable-line no-unused-vars
     el: '#game3-container',
     data: {
-      instructions: 'instructions go here',
+      instructions: "The game will guess your number! Think of a number between 0 and 99. The game will output it's guess and you need to tell it if it's too high, too low, or correct. Don't lie though, or the game will call you out!",
       buttons: [{value: 'Start Game'}, {value: 'Restart Game?'}, {value: 'Higher'}, {value: 'Correct'}, {value: 'Lower'}],
       response: '',
       history: '',
@@ -119,7 +119,7 @@ function main () { // eslint-disable-line no-unused-vars
   var game4 = new Vue({ // eslint-disable-line no-unused-vars
     el: '#game4-container',
     data: {
-      instructions: 'instructions go here',
+      instructions: "The game will guess your number! Think of a number between 0 and 99. The game will output it's guess and you need to tell it if it's COLD (more than 40 from the target number), COOL (within 20-39 of the target number), WARM (within 10-19 of the target number), HOT (within 9 of the target number), or correct. Don't lie though, or the game will call you out!",
       buttons: [{value: 'Start Game'}, {value: 'Restart Game?'}, {value: 'Hot'}, {value: 'Warm'}, {value: 'Cool'}, {value: 'Cold'}, {value: 'Correct'}],
       response: '',
       history: '',
