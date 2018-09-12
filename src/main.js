@@ -21,7 +21,6 @@ function main () { // eslint-disable-line no-unused-vars
     data: {
       // messages
       instructions: 'instructions go here',
-      response: '',
       history: '',
       placeholder: 'Enter your guess',
       // for swapping buttons
@@ -29,7 +28,7 @@ function main () { // eslint-disable-line no-unused-vars
       // other variables
       buttons: [{value: 'Start Game'}, {value: 'Submit Guess'}, {value: 'Restart Game?'}],
       userInput: '',
-      brain: new ThinkerBrain('HighLow', {tooHigh: 'Try a lower number!', tooLow: 'Try a higher number!'})
+      myBrain: new ThinkerBrain('HighLow', {tooHigh: 'Try a lower number!', tooLow: 'Try a higher number!'})
     },
     methods: {
       swapButton: function (newBtn) {
@@ -44,15 +43,15 @@ function main () { // eslint-disable-line no-unused-vars
         this.response = ''
         this.history = ''
         this.swapButton('Submit Guess')
-        this.brain.startGame()
+        this.myBrain.startGame()
       },
       guessHandler: function () {
         if (this.userInput) {
           // only runs if the user has entered something into the user input box
-          let output = this.brain.turnHandler(this.userInput)
+          let output = this.myBrain.turnHandler(this.userInput)
           this.userInput = ''
           this.response = output.message
-          this.history = this.brain.formattedHistory
+          this.history = this.myBrain.formattedHistory
           if (output.gameState === 'finished') {
             this.swapButton('Restart Game?')
           }
@@ -74,7 +73,7 @@ function main () { // eslint-disable-line no-unused-vars
       // other variables
       buttons: [{value: 'Start Game'}, {value: 'Submit Guess'}, {value: 'Restart Game?'}],
       userInput: '',
-      brain: new ThinkerBrain('HotCold', {hot: 'Too Hot! (+/- 1-9)', warm: 'Getting Warm! (+/- 10-19)', cool: 'Cool... (+/- 20-39)', cold: 'Brr, cold! (+/- 40+)'})
+      myBrain: new ThinkerBrain('HotCold', {hot: 'Too Hot! (+/- 1-9)', warm: 'Getting Warm! (+/- 10-19)', cool: 'Cool... (+/- 20-39)', cold: 'Brr, cold! (+/- 40+)'})
     },
     methods: {
       swapButton: function (newBtn) {
@@ -89,15 +88,15 @@ function main () { // eslint-disable-line no-unused-vars
         this.response = ''
         this.history = ''
         this.swapButton('Submit Guess')
-        this.brain.startGame()
+        this.myBrain.startGame()
       },
       guessHandler: function () {
         if (this.userInput) {
           // only runs if the user has entered something into the user input box
-          let output = this.brain.turnHandler(this.userInput)
+          let output = this.myBrain.turnHandler(this.userInput)
           this.userInput = ''
           this.response = output.message
-          this.history = this.brain.formattedHistory
+          this.history = this.myBrain.formattedHistory
           if (output.gameState === 'finished') {
             this.swapButton('Restart Game?')
           }
@@ -105,8 +104,8 @@ function main () { // eslint-disable-line no-unused-vars
       }
     }
   })
-  
-  var game3 = new Vue ({
+
+  var game3 = new Vue({ // eslint-disable-line no-unused-vars
     el: '#game3-container',
     data: {
       instructions: 'instructions go here',
@@ -116,8 +115,8 @@ function main () { // eslint-disable-line no-unused-vars
       btnSeen: 'Start Game'
     }
   })
-  
-  var game4 = new Vue ({
+
+  var game4 = new Vue({ // eslint-disable-line no-unused-vars
     el: '#game4-container',
     data: {
       instructions: 'instructions go here',

@@ -40,8 +40,13 @@ p {
   margin: .5em 0;
 }
 
-.response, .history {
+ul {
+  list-style: none;
+}
+
+.history {
   width: 75%;
+  margin: 1em;
 }
 
 .user-input-container {

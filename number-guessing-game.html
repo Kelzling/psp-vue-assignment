@@ -23,10 +23,10 @@
       <game-btn v-bind='{newButton: buttons[1], method: guessHandler}' v-if="btnSeen === 'Submit Guess'"></game-btn>
       <game-btn v-bind='{newButton: buttons[2], method: startGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
     </div>
-    
-    <p class="response" id="v1-response">{{ response }}</p>
-    
-    <p class="history" id="v1-history">{{ history }}</p>
+
+    <ul class="history">
+      <li v-for="item in history">{{ item }}</li>
+    </ul>
   </div>
   
   <div id="game2-container" class='game-container'>
@@ -39,9 +39,9 @@
       <game-btn v-bind='{newButton: buttons[2], method: startGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
     </div>
     
-    <p class="response" id="v2-response">{{ response }}</p>
-    
-    <p class="history" id="v2-history">{{ history }}</p>
+    <ul class="history">
+      <li v-for="item in history">{{ item }}</li>
+    </ul>
   </div>
   
   <div id="game3-container" class='game-container'>

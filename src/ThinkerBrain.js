@@ -22,9 +22,16 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
 
   get formattedHistory () {
     // formats the history in an average looking string. needs reworking
-    let output = ''
+    let output = []
+    let count = 1
     if (this.guessHistory) {
-      this.guessHistory.forEach(function (num, index) { output += `${index + 1}: ${num}, ` })
+      for (let item of this.guessHistory) {
+        if (count > 10) {
+          break
+        }
+        output.push(`You guessed ${item.guess} - ${item.message}`)
+        count++
+      }
     }
     return output
   }
@@ -33,7 +40,8 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
     // (re)set game variables and generate random number
     this.guessCount = 0
     this.guessHistory = []
-    this.number = Math.round(Math.random() * 100)
+    // this.number = Math.round(Math.random() * 100)
+    this.number = 50
     this.gameState = 'in-progress'
     if (VERBOSE) {
       // verbose logging for testing purposes
@@ -62,7 +70,7 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
     }
     return isValid
   }
-  
+
   highLowGuess (userGuess) {
     let response = ''
     if (userGuess > this.number) {
@@ -81,7 +89,7 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
     }
     return response
   }
-  
+
   hotColdGuess (userGuess) {
     let response = ''
     if (userGuess === this.number) {
@@ -102,20 +110,20 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
 
   turnHandler (userInput) {
     // function called by Vue, which passes the user input in it's raw form
-    let response = ''
     let userGuess = this.processInput(userInput)
+    let response = ''
     if (this.validateInput(userGuess)) {
       // if input was valid, add to guessCount and history then call guess comparing logic
       this.guessCount += 1
       if (VERBOSE) {
         console.log(`Guess Count: ${this.guessCount}`)
       }
-      this.guessHistory.push(userGuess)
       if (this.gameType === 'HighLow') {
         response = this.highLowGuess(userGuess)
       } else if (this.gameType === 'HotCold') {
         response = this.hotColdGuess(userGuess)
       }
+      this.guessHistory.unshift({guess: userGuess, message: response})
     } else {
       // else if input was not a valid guess
       response = 'Please Enter a number between 0-99'
