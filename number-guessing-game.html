@@ -14,9 +14,7 @@
     <input type="button" class="version-btn" id="selected" value="Version 1">
   </div>
   
-  <div id="game-container">
-<!--     <h2>Instructions</h2>
-    <p class="instructions-text">{{ instructions }}</p> -->
+  <div id="game-container" class='game-container'>
     <game-instructions v-bind='{instructions}'></game-instructions>
     
     <div class='user-input-container'>
@@ -24,9 +22,6 @@
       <game-btn v-bind='{newButton: buttons[0], method: startGame}' v-if="btnSeen === 'Start Game'"></game-btn>
       <game-btn v-bind='{newButton: buttons[1], method: guessHandler}' v-if="btnSeen === 'Submit Guess'"></game-btn>
       <game-btn v-bind='{newButton: buttons[2], method: startGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
-    <!--   <input type="button" class="game-start" id="v1-start" value="Start Game" v-if="startSeen" @click="startGame">
-      <input type="button" class="guess-submit" id="v1-submit" value="submit" v-if="submitSeen" @click="compareGuess">
-      <input type="button" class="game-restart" id="v1-restart" value="Restart Game?" v-if="restartSeen" @click="startGame"> -->
     </div>
     
     <p class="response" id="v1-response">{{ response }}</p>
@@ -34,7 +29,7 @@
     <p class="history" id="v1-history">{{ history }}</p>
   </div>
   
-  <div id="game2-container">
+  <div id="game2-container" class='game-container'>
     <game-instructions v-bind='{instructions}'></game-instructions>
     
     <div class='user-input-container'>
@@ -42,6 +37,40 @@
       <game-btn v-bind='{newButton: buttons[0], method: startGame}' v-if="btnSeen === 'Start Game'"></game-btn>
       <game-btn v-bind='{newButton: buttons[1], method: guessHandler}' v-if="btnSeen === 'Submit Guess'"></game-btn>
       <game-btn v-bind='{newButton: buttons[2], method: startGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
+    </div>
+    
+    <p class="response" id="v2-response">{{ response }}</p>
+    
+    <p class="history" id="v2-history">{{ history }}</p>
+  </div>
+  
+  <div id="game3-container" class='game-container'>
+    <game-instructions v-bind='{instructions}'></game-instructions>
+    
+    <game-btn v-bind='{newButton: buttons[0], method: startGame}'></game-btn> <!-- v-if="btnSeen === 'Start Game'" (commmented out until backend added) -->
+    <game-btn v-bind='{newButton: buttons[1], method: startGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
+    <div class="user-response-btns"> <!-- v-if="btnSeen === 'User Response Buttons'" (commented out until backend added) -->
+      <game-btn v-bind='{newButton: buttons[2], method: respondHigher}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[3], method: respondCorrect}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[4], method: respondLower}'></game-btn>
+    </div>
+    
+    <p class="response" id="v2-response">{{ response }}</p>
+    
+    <p class="history" id="v2-history">{{ history }}</p>
+  </div>
+  
+  <div id="game4-container" class='game-container'>
+    <game-instructions v-bind='{instructions}'></game-instructions>
+    
+    <game-btn v-bind='{newButton: buttons[0], method: startGame}'></game-btn> <!-- v-if="btnSeen === 'Start Game'" (commmented out until backend added) -->
+    <game-btn v-bind='{newButton: buttons[1], method: startGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
+    <div class="user-response-btns"> <!-- v-if="btnSeen === 'User Response Buttons'" (commented out until backend added) -->
+      <game-btn v-bind='{newButton: buttons[2], method: respondHot}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[3], method: respondWarm}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[4], method: respondCool}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[5], method: respondCold}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[6], method: respondCorrect}'></game-btn>
     </div>
     
     <p class="response" id="v2-response">{{ response }}</p>

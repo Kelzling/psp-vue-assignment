@@ -105,4 +105,26 @@ function main () { // eslint-disable-line no-unused-vars
       }
     }
   })
+  
+  var game3 = new Vue ({
+    el: '#game3-container',
+    data: {
+      instructions: 'instructions go here',
+      buttons: [{value: 'Start Game'}, {value: 'Restart Game?'}, {value: 'Higher'}, {value: 'Correct'}, {value: 'Lower'}],
+      response: '',
+      history: '',
+      btnSeen: 'Start Game'
+    }
+  })
+  
+  var game4 = new Vue ({
+    el: '#game4-container',
+    data: {
+      instructions: 'instructions go here',
+      buttons: [{value: 'Start Game'}, {value: 'Restart Game?'}, {value: 'Hot'}, {value: 'Warm'}, {value: 'Cool'}, {value: 'Cold'}, {value: 'Correct'}],
+      response: '',
+      history: '',
+      btnSeen: 'Start Game'
+    }
+  })
 }

@@ -24,7 +24,7 @@ h1 {
   text-align: center;
 }
 
-#game-container, #game2-container {
+.game-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,6 +55,12 @@ p {
 }
 
 .gameBtn {
-  width: 25%;
+  min-width: 25%;
   margin: 0 .5em;
+}
+
+.user-response-btns {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em;
 }
