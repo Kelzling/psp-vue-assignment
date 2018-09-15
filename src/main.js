@@ -119,7 +119,7 @@ function main () { // eslint-disable-line no-unused-vars
       guessCount: 0
     },
     methods: {
-      swapButton: function(newBtn) {
+      swapButton: function (newBtn) {
         let validButtons = ['Start Game', 'Restart Game?', 'User Response Buttons']
         if (validButtons.includes(newBtn)) {
           this.btnSeen = newBtn
@@ -127,7 +127,7 @@ function main () { // eslint-disable-line no-unused-vars
           console.warn('That button is not a valid option')
         }
       },
-      startGame: function() {
+      startGame: function () {
         // reinitialise variables
         this.guess = 0
         this.upperBound = 99
@@ -142,7 +142,7 @@ function main () { // eslint-disable-line no-unused-vars
         this.swapButton('User Response Buttons')
         this.response = this.computerGuess()
       },
-      turnHandler: function(message) {
+      turnHandler: function (message) {
         // add the previous guess and the users response to the history
         this.history.unshift({guess: this.guess, response: message})
         if (VERBOSE) {
@@ -164,12 +164,12 @@ function main () { // eslint-disable-line no-unused-vars
           this.swapButton('Restart Game?')
         }
       },
-      computerGuess: function() {
-        this.guess = Math.ceil((this.upperBound + this.lowerBound)/2)
+      computerGuess: function () {
+        this.guess = Math.ceil((this.upperBound + this.lowerBound) / 2)
         this.guessCount++
         return this.guess
       },
-      updateBounds: function(message) {
+      updateBounds: function (message) {
         if (message === 'Try Higher') {
           this.lowerBound = this.guess
           if (VERBOSE) {
