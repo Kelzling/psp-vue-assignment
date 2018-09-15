@@ -1,6 +1,6 @@
 Vague ideas:
 
-Split SPA up into Header / Game sections (Vue objects)
-Use components for making things that there are multiple of, like the game select buttons, and the game control buttons
-Write functions for choosing which button is to be shown / highlighted based upon a passed argument rather than manually altering all of the variables each time.
-Create a class (super / sub classes? or one class and then build instances of it with variations? Will probably need some testing and further thought closer to the time once the duplication between task/app/things is more obvious) for the games and their methods, and then have the controllers run the vue instances that create / update all the things, pulling their methods from the classes
+Make a collaboration diagram when doing the refactoring for t3 and 4
+is it possible to make a start game function that takes an argument of an array of objects, where the objects contain the name of each attribute that needs to be reinitialised and it's default value. function iterates over the array setting object.attribute to object.default. would make for a nice reusable startGame function.
+do split hotcoldthinker and highlowthinker into separate classes when doing later refactoring
+use JSON object cloning to reduce vue object duplication

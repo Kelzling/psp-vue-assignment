@@ -111,8 +111,77 @@ function main () { // eslint-disable-line no-unused-vars
       instructions: "The game will guess your number! Think of a number between 0 and 99. The game will output it's guess and you need to tell it if it's too high, too low, or correct. Don't lie though, or the game will call you out!",
       buttons: [{value: 'Start Game'}, {value: 'Restart Game?'}, {value: 'Higher'}, {value: 'Correct'}, {value: 'Lower'}],
       response: '',
-      history: '',
-      btnSeen: 'Start Game'
+      history: [],
+      btnSeen: 'Start Game',
+      guess: 0,
+      upperBound: 99,
+      lowerBound: 0,
+      guessCount: 0
+    },
+    methods: {
+      swapButton: function(newBtn) {
+        let validButtons = ['Start Game', 'Restart Game?', 'User Response Buttons']
+        if (validButtons.includes(newBtn)) {
+          this.btnSeen = newBtn
+        } else {
+          console.warn('That button is not a valid option')
+        }
+      },
+      startGame: function() {
+        // reinitialise variables
+        this.guess = 0
+        this.upperBound = 99
+        this.lowerBound = 0
+        this.response = ''
+        this.history = []
+        this.guessCount = 0
+        if (VERBOSE) {
+          console.log(`Guess: ${this.guess}, Upper Bound: ${this.upperBound}, Lower Bound: ${this.lowerBound}, history: ${this.history}, Guess Count: ${this.guessCount}`)
+        }
+        // display user buttons and get the first guess
+        this.swapButton('User Response Buttons')
+        this.response = this.computerGuess()
+      },
+      turnHandler: function(message) {
+        // add the previous guess and the users response to the history
+        this.history.unshift({guess: this.guess, response: message})
+        if (VERBOSE) {
+          console.log(this.history)
+        }
+        if (message !== 'Correct') {
+          // if the game is still going, update the bounds, generate and output the new guess from the computer
+          this.updateBounds(message)
+          this.response = this.computerGuess()
+          if (VERBOSE) {
+            console.log('waiting for user response')
+          }
+        } else if (message === 'Correct') {
+          // if the game has finished, display the end game message and bring in the restart game button
+          this.response = `Guess was ${this.guess} and I won in ${this.guessCount} turns!!`
+          if (VERBOSE) {
+            console.log(`Game over after ${this.guessCount} turns, correct guess was ${this.guess}`)
+          }
+          this.swapButton('Restart Game?')
+        }
+      },
+      computerGuess: function() {
+        this.guess = Math.ceil((this.upperBound + this.lowerBound)/2)
+        this.guessCount++
+        return this.guess
+      },
+      updateBounds: function(message) {
+        if (message === 'Try Higher') {
+          this.lowerBound = this.guess
+          if (VERBOSE) {
+            console.log(`Lower Bound was shifted to ${this.lowerBound}`)
+          }
+        } else if (message === 'Try Lower') {
+          this.upperBound = this.guess
+          if (VERBOSE) {
+            console.log(`Upper Bound was shifted to ${this.upperBound}`)
+          }
+        }
+      }
     }
   })
 
