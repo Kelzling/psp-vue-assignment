@@ -63,14 +63,14 @@
   <div id="game4-container" class='game-container'>
     <game-instructions v-bind='{instructions}'></game-instructions>
     
-    <game-btn v-bind='{newButton: buttons[0], method: startGame}'></game-btn> <!-- v-if="btnSeen === 'Start Game'" (commmented out until backend added) -->
+    <game-btn v-bind='{newButton: buttons[0], method: startGame}' v-if="btnSeen === 'Start Game'"></game-btn>
     <game-btn v-bind='{newButton: buttons[1], method: startGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
-    <div class="user-response-btns"> <!-- v-if="btnSeen === 'User Response Buttons'" (commented out until backend added) -->
-      <game-btn v-bind='{newButton: buttons[2], method: respondHot}'></game-btn>
-      <game-btn v-bind='{newButton: buttons[3], method: respondWarm}'></game-btn>
-      <game-btn v-bind='{newButton: buttons[4], method: respondCool}'></game-btn>
-      <game-btn v-bind='{newButton: buttons[5], method: respondCold}'></game-btn>
-      <game-btn v-bind='{newButton: buttons[6], method: respondCorrect}'></game-btn>
+    <div class="user-response-btns" v-if="btnSeen === 'User Response Buttons'">
+      <game-btn v-bind='{newButton: buttons[2], method: turnHandler.bind(null, "Hot")}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[3], method: turnHandler.bind(null, "Warm")}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[4], method: turnHandler.bind(null, "Cool")}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[5], method: turnHandler.bind(null, "Cold")}'></game-btn>
+      <game-btn v-bind='{newButton: buttons[6], method: turnHandler.bind(null, "Correct")}'></game-btn>
     </div>
     
     <p class="response" id="v2-response">{{ response }}</p>
