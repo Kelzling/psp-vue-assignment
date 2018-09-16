@@ -241,7 +241,7 @@ function main () { // eslint-disable-line no-unused-vars
       guess: 0,
       upperBound: 99,
       lowerBound: 0,
-      guessCount: 0,
+      guessCount: 0
     },
     methods: {
       swapButton: function (newBtn) {
@@ -298,7 +298,7 @@ function main () { // eslint-disable-line no-unused-vars
         this.guessCount++
         console.log(`Guess #${this.guessCount}: ${this.guess}`)
         return this.guess
-      }, 
+      },
       updateBounds: function (message) {
         let newUpperBound = this.upperBound
         let newLowerBound = this.lowerBound
@@ -324,7 +324,7 @@ function main () { // eslint-disable-line no-unused-vars
             newUpperBound = Math.min(newUpperBound, (newLowerBound + 9))
           } else {
             // else it was guessing the upper bound
-            // drop the upper bound by 10 and set the lower to the higher of the current one or the new upper - 9 
+            // drop the upper bound by 10 and set the lower to the higher of the current one or the new upper - 9
             newUpperBound -= 10
             newLowerBound = Math.max(newLowerBound, (newUpperBound - 9))
           }
