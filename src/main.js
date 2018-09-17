@@ -40,7 +40,6 @@ function main () { // eslint-disable-line no-unused-vars
         }
       },
       startGame: function () {
-        this.response = ''
         this.history = ''
         this.swapButton('Submit Guess')
         this.myBrain.startGame()
@@ -50,7 +49,7 @@ function main () { // eslint-disable-line no-unused-vars
           // only runs if the user has entered something into the user input box
           let output = this.myBrain.turnHandler(this.userInput)
           this.userInput = ''
-          this.response = output.message
+          // this.response = output.message
           this.history = this.myBrain.formattedHistory
           if (output.gameState === 'finished') {
             this.swapButton('Restart Game?')
@@ -85,7 +84,6 @@ function main () { // eslint-disable-line no-unused-vars
         }
       },
       startGame: function () {
-        this.response = ''
         this.history = ''
         this.swapButton('Submit Guess')
         this.myBrain.startGame()
@@ -95,7 +93,7 @@ function main () { // eslint-disable-line no-unused-vars
           // only runs if the user has entered something into the user input box
           let output = this.myBrain.turnHandler(this.userInput)
           this.userInput = ''
-          this.response = output.message
+          // this.response = output.message
           this.history = this.myBrain.formattedHistory
           if (output.gameState === 'finished') {
             this.swapButton('Restart Game?')
@@ -275,10 +273,14 @@ function main () { // eslint-disable-line no-unused-vars
         }
         if (message !== 'Correct') {
           // if the game is still going, update the bounds, generate and output the new guess from the computer
-          this.updateBounds(message)
-          this.response = this.computerGuess()
-          if (VERBOSE) {
-            console.log('waiting for user response')
+          if (this.updateBounds(message)) {
+            this.response = this.computerGuess()
+            if (VERBOSE) {
+              console.log('waiting for user response')
+            }
+          } else {
+            this.response = `You lied to me! Nothing makes sense any more! I don't want to play now.`
+            this.swapButton('Restart Game?')
           }
         } else if (message === 'Correct') {
           // if the game has finished, display the end game message and bring in the restart game button
@@ -300,6 +302,7 @@ function main () { // eslint-disable-line no-unused-vars
         return this.guess
       },
       updateBounds: function (message) {
+        let success = true
         let newUpperBound = this.upperBound
         let newLowerBound = this.lowerBound
         if (message === 'Hot') {
@@ -351,10 +354,27 @@ function main () { // eslint-disable-line no-unused-vars
             newUpperBound -= 40
           }
         }
-        console.log(`New upper: ${newUpperBound}, New lower: ${newLowerBound}`)
-        // lie detect here?
-        this.upperBound = newUpperBound
-        this.lowerBound = newLowerBound
+        if (!this.detectLies(newUpperBound, newLowerBound)) {
+          console.log(`New upper: ${newUpperBound}, New lower: ${newLowerBound}`)
+          this.upperBound = newUpperBound
+          this.lowerBound = newLowerBound
+        } else {
+          success = false
+        }
+        return success
+      },
+      detectLies: function (newUpperBound, newLowerBound) {
+        let liesDetected = false
+        if (this.guess === this.upperBound) {
+          if (newUpperBound > this.upperBound || newUpperBound < this.lowerBound) {
+            liesDetected = true
+          }
+        } else if (this.guess === this.lowerBound) {
+          if (newLowerBound < this.lowerBound || newLowerBound > this.upperBound) {
+            liesDetected = true
+          }
+        }
+        return liesDetected
       }
     }
   })
