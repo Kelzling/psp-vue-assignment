@@ -1,4 +1,6 @@
-class HotColdGuesserBrain extends GuesserBrain {
+/* global VERBOSE, GuesserBrain */
+
+class HotColdGuesserBrain extends GuesserBrain { // eslint-disable-line no-unused-vars
   detectLies (newUpperBound, newLowerBound) {
     let liesDetected = false
     if (this.guess === this.upperBound) {
@@ -12,7 +14,7 @@ class HotColdGuesserBrain extends GuesserBrain {
     }
     return liesDetected
   }
-  
+
   updateBounds (userResponse) {
     let success = true
     let newUpperBound = this.upperBound
@@ -36,7 +38,7 @@ class HotColdGuesserBrain extends GuesserBrain {
           break
       }
     } else if (this.guess === this.lowerBound) {
-      switch(userResponse) {
+      switch (userResponse) {
         case 'Hot':
           newLowerBound++
           newUpperBound = Math.min(newUpperBound, newLowerBound + 9)
@@ -59,14 +61,14 @@ class HotColdGuesserBrain extends GuesserBrain {
       this.lowerBound = newLowerBound
       if (VERBOSE) {
         console.log(`New upper: ${newUpperBound}, New lower: ${newLowerBound}`)
-      } 
+      }
     } else {
       success = false
     }
     return success
   }
-  
-  computerGuess() {
+
+  computerGuess () {
     this.guess = (this.guessCount % 2 === 0 ? this.lowerBound : this.upperBound)
     this.guessCount++
     console.log(`Guess #${this.guessCount}: ${this.guess}`)

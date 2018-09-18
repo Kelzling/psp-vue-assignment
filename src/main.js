@@ -1,4 +1,4 @@
-/* global Vue, ThinkerBrain */
+/* global Vue, ThinkerBrain, GuesserBrain, HotColdGuesserBrain */
 
 // global vars for debugging etc
 var VERBOSE = true // eslint-disable-line no-unused-vars
@@ -152,7 +152,7 @@ function main () { // eslint-disable-line no-unused-vars
       response: '',
       history: [],
       btnSeen: 'Start Game',
-      myBrain: new HotColdGuesserBrain
+      myBrain: new HotColdGuesserBrain()
     },
     methods: {
       swapButton: function (newBtn) {

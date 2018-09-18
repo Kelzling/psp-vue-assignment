@@ -1,7 +1,7 @@
 /* global VERBOSE */
 
 class GuesserBrain { // eslint-disable-line no-unused-vars
-  constructor() {
+  constructor () {
     this.guess = 0
     this.guessCount = 0
     this.guessHistory = []
@@ -10,17 +10,17 @@ class GuesserBrain { // eslint-disable-line no-unused-vars
     this.lowerBound = 0
     this.lieResponse = "You lied to me! Nothing makes sense! I don't want to play any more. :("
   }
-  
+
   get winResponse () {
     return `Your number was ${this.guess} and I won in ${this.guessCount} turns!`
   }
-  
+
   get formattedHistory () {
     let output = []
     let count = 1
     if (this.guessHistory) {
       for (let item of this.guessHistory) {
-        if (count > 10)  {
+        if (count > 10) {
           break
         }
         output.push(`My guess was ${item.guess} and you responded ${item.response}`)
@@ -29,11 +29,11 @@ class GuesserBrain { // eslint-disable-line no-unused-vars
     }
     return output
   }
-  
+
   get oldGuesses () {
     return this.guessHistory.map(obj => obj.guess)
   }
-  
+
   startGame () {
     this.guess = 0
     this.guessCount = 0
@@ -47,7 +47,7 @@ class GuesserBrain { // eslint-disable-line no-unused-vars
     this.computerGuess()
     return this.guess
   }
-  
+
   detectLies (userResponse, newBound) {
     let liesDetected = false
     if (userResponse === 'Try Higher') {
@@ -65,7 +65,7 @@ class GuesserBrain { // eslint-disable-line no-unused-vars
     }
     return liesDetected
   }
-  
+
   updateBounds (userResponse) {
     let success = true
     if (userResponse === 'Try Higher') {
@@ -91,7 +91,7 @@ class GuesserBrain { // eslint-disable-line no-unused-vars
     }
     return success
   }
-  
+
   computerGuess () {
     let success = true
     let newGuess = Math.ceil((this.upperBound + this.lowerBound) / 2)
@@ -106,7 +106,7 @@ class GuesserBrain { // eslint-disable-line no-unused-vars
     }
     return success
   }
-  
+
   turnHandler (userResponse) {
     this.guessHistory.unshift({guess: this.guess, response: userResponse})
     let computerResponse = ''
