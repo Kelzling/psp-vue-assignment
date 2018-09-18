@@ -5,6 +5,8 @@
   <link rel="stylesheet" href="css\stylesheet.css"></link>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="src/ThinkerBrain.js"></script>
+  <script src="src/GuesserBrain.js"></script>
+  <script src="src/HotColdGuesserBrain.js"></script>
   <script src="src/main.js"></script>
   <script>window.onload = main</script>
 </head>
@@ -55,9 +57,11 @@
       <game-btn v-bind='{newButton: buttons[4], method: turnHandler.bind(null, "Try Lower")}'></game-btn>
     </div>
     
-    <p class="response" id="v2-response">{{ response }}</p>
+    <p class="response">{{ response }}</p>
     
-    <p class="history" id="v2-history">{{ history }}</p>
+    <ul class="history">
+      <li v-for="item in history">{{ item }}</li>
+    </ul>
   </div>
   
   <div id="game4-container" class='game-container'>
@@ -73,9 +77,11 @@
       <game-btn v-bind='{newButton: buttons[6], method: turnHandler.bind(null, "Correct")}'></game-btn>
     </div>
     
-    <p class="response" id="v2-response">{{ response }}</p>
+    <p class="response">{{ response }}</p>
     
-    <p class="history" id="v2-history">{{ history }}</p>
+    <ul class="history">
+      <li v-for="item in history">{{ item }}</li>
+    </ul>
   </div>
 </body>
 </html>
