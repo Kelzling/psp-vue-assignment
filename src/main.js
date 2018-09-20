@@ -20,6 +20,7 @@ Vue.component('version-btn', {
 })
 
 Vue.component('game', {
+  props: ['instructions', 'history'],
   template: '<div class="game-container"><game-instructions v-bind="{instructions}"></game-instructions><slot></slot><ul class="history"><li v-for="item in history">{{ item }}</li></ul></div>'
 })
 

@@ -28,41 +28,33 @@
       <game-instructions v-bind='{instructions}'></game-instructions>
     </div>
     
-    <div id="game-1" class='game-container' v-if="gameSeen === 'game-1'">
-      <game-instructions v-bind='{instructions}'></game-instructions>
-      
+    <game id="game-1" v-if="gameSeen === 'game-1'" v-bind='{instructions, history}'>
       <game-btn v-bind='{newButton: buttons[0], method: startThinkerGame}' v-if="btnSeen === 'Start Game'"></game-btn>
+      
       <div class='user-input-container' v-if="btnSeen === 'User Response'">
         <input class="guess-input" id="v1-input" v-bind:placeholder="placeholder" v-model="userInput">
         <game-btn v-bind='{newButton: buttons[1], method: userGuessHandler}'></game-btn>
       </div>
-      <game-btn v-bind='{newButton: buttons[2], method: startThinkerGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
-
-      <ul class="history">
-        <li v-for="item in history">{{ item }}</li>
-      </ul>
-    </div>
-    
-    <div id="game-2" class='game-container' v-if="gameSeen === 'game-2'">
-      <game-instructions v-bind='{instructions}'></game-instructions>
       
+      <game-btn v-bind='{newButton: buttons[2], method: startThinkerGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
+    </game>
+
+    <game id="game-2" v-if="gameSeen === 'game-2'"  v-bind='{instructions, history}'>
       <game-btn v-bind='{newButton: buttons[0], method: startThinkerGame}' v-if="btnSeen === 'Start Game'"></game-btn>
+      
       <div class='user-input-container' v-if="btnSeen === 'User Response'">
         <input class="guess-input" id="v2-input" v-bind:placeholder="placeholder" v-model="userInput">
         <game-btn v-bind='{newButton: buttons[1], method: userGuessHandler}'></game-btn>
       </div>
+      
       <game-btn v-bind='{newButton: buttons[2], method: startThinkerGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
-      
-      <ul class="history">
-        <li v-for="item in history">{{ item }}</li>
-      </ul>
-    </div>
+    </game>
     
-    <div id="game-3" class='game-container' v-if="gameSeen === 'game-3'">
-      <game-instructions v-bind='{instructions}'></game-instructions>
-      
+    <game id="game-3" v-if="gameSeen === 'game-3'"  v-bind='{instructions, history}'>
       <game-btn v-bind='{newButton: buttons[0], method: startGuesserGame}' v-if="btnSeen === 'Start Game'"></game-btn>
+      
       <game-btn v-bind='{newButton: buttons[1], method: startGuesserGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
+      
       <div class="user-response-btns" v-if="btnSeen === 'User Response'">
         <game-btn v-bind='{newButton: buttons[2], method: userResponseHandler.bind(null, "Try Higher")}'></game-btn>
         <game-btn v-bind='{newButton: buttons[3], method: userResponseHandler.bind(null, "Correct")}'></game-btn>
@@ -70,17 +62,13 @@
       </div>
       
       <p class="response">{{ response }}</p>
-      
-      <ul class="history">
-        <li v-for="item in history">{{ item }}</li>
-      </ul>
-    </div>
+    </game>
     
-    <div id="game-4" class='game-container' v-if="gameSeen === 'game-4'">
-      <game-instructions v-bind='{instructions}'></game-instructions>
-      
+    <game id="game-4" v-if="gameSeen === 'game-4'"  v-bind='{instructions, history}'>
       <game-btn v-bind='{newButton: buttons[0], method: startGuesserGame}' v-if="btnSeen === 'Start Game'"></game-btn>
+      
       <game-btn v-bind='{newButton: buttons[1], method: startGuesserGame}' v-if="btnSeen === 'Restart Game?'"></game-btn>
+      
       <div class="user-response-btns" v-if="btnSeen === 'User Response'">
         <game-btn v-bind='{newButton: buttons[2], method: userResponseHandler.bind(null, "Hot")}'></game-btn>
         <game-btn v-bind='{newButton: buttons[3], method: userResponseHandler.bind(null, "Warm")}'></game-btn>
@@ -90,11 +78,7 @@
       </div>
       
       <p class="response">{{ response }}</p>
-      
-      <ul class="history">
-        <li v-for="item in history">{{ item }}</li>
-      </ul>
-    </div>
+    </game>
   </div>
 </body>
 </html>
