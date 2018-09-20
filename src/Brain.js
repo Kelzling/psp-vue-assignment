@@ -19,6 +19,7 @@ class Brain { // eslint-disable-line no-unused-vars
   }
 
   startGame () {
+    // (re) initialise variables that need clearing for each game.
     this.guessCount = 0
     this.gameState = 'in-progress'
     this.guessHistory = []

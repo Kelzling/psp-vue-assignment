@@ -16,6 +16,7 @@ class GuesserBrain extends Brain { // eslint-disable-line no-unused-vars
   }
 
   get formattedHistory () {
+    // turns stored guesses and responses into nice strings for outputting to user
     let output = []
     let count = 1
     if (this.guessHistory) {
@@ -31,10 +32,12 @@ class GuesserBrain extends Brain { // eslint-disable-line no-unused-vars
   }
 
   get oldGuesses () {
+    // generate an array of just the guesses for comparison purposes
     return this.guessHistory.map(obj => obj.guess)
   }
 
   startGame () {
+    // call super.startGame and then (re) initialise extra variables as well
     super.startGame()
     this.guess = 0
     this.upperBound = 99
@@ -42,13 +45,16 @@ class GuesserBrain extends Brain { // eslint-disable-line no-unused-vars
     if (VERBOSE) {
       console.log(`Guess: ${this.guess}, Upper Bound: ${this.upperBound}, Lower Bound: ${this.lowerBound}`)
     }
+    // generate the initial guess and return it to the controller
     this.computerGuess()
     return this.guess
   }
 
   detectLies (userResponse, newBound) {
     let liesDetected = false
+    // if new bound seems to contradict old information, user must have lied.
     if (userResponse === 'Try Higher') {
+      // deal with lower bound
       if (newBound < 0 || newBound >= this.upperBound || newBound === this.lowerBound) {
         liesDetected = true
       }
@@ -67,8 +73,10 @@ class GuesserBrain extends Brain { // eslint-disable-line no-unused-vars
   updateBounds (userResponse) {
     let success = true
     if (userResponse === 'Try Higher') {
+      // if this we know the number can't be lower than the current guess
       let newLowerBound = this.guess
       if (!this.detectLies(userResponse, newLowerBound)) {
+        // if that doesn't contradict anything we knew previously, we can update the bound properly
         this.lowerBound = newLowerBound
         if (VERBOSE) {
           console.log(`Lower Bound was shifted to ${this.lowerBound}`)
@@ -77,8 +85,10 @@ class GuesserBrain extends Brain { // eslint-disable-line no-unused-vars
         success = false
       }
     } else if (userResponse === 'Try Lower') {
+      // if this we know the number can't be higher than the current guess
       let newUpperBound = this.guess
       if (!this.detectLies(userResponse, newUpperBound)) {
+        // if that doesn't contradict anything we knew previously, we can update the bound properly
         this.upperBound = newUpperBound
         if (VERBOSE) {
           console.log(`Upper Bound was shifted to ${this.upperBound}`)
@@ -92,8 +102,10 @@ class GuesserBrain extends Brain { // eslint-disable-line no-unused-vars
 
   computerGuess () {
     let success = true
+    // guess halfway between the current bounds
     let newGuess = Math.ceil((this.upperBound + this.lowerBound) / 2)
     if (!this.oldGuesses.includes(newGuess)) {
+      // as long as that number hasn't been guessed before, we can move on with the guessing process
       this.guess = newGuess
       this.guessCount++
     } else {
@@ -106,6 +118,7 @@ class GuesserBrain extends Brain { // eslint-disable-line no-unused-vars
   }
 
   turnHandler (userResponse) {
+    // store previous guess and the users response at the start of the history array (since we want to display the most recent turn at the top)
     this.guessHistory.unshift({guess: this.guess, response: userResponse})
     let computerResponse = ''
     if (userResponse === 'Correct') {
@@ -114,8 +127,10 @@ class GuesserBrain extends Brain { // eslint-disable-line no-unused-vars
       computerResponse = this.winResponse
     } else {
       if (this.updateBounds(userResponse) && this.computerGuess()) {
+        // if neither updating bounds or generating the guess causes an issue, we can move on with outputting the guess to the user!
         computerResponse = this.guess
       } else {
+        // otherwise end the game and tell the user they lied
         this.gameState = 'finished'
         computerResponse = this.lieResponse
       }

@@ -13,6 +13,7 @@ class HotColdThinkerBrain extends ThinkerBrain { // eslint-disable-line no-unuse
       // if guess is correct
       response = this.winResponse
       this.gameState = 'finished'
+      // otherwise output response based upon the difference between the users guess and the random number
     } else if (userGuess <= this.number + 9 && userGuess >= this.number - 9) {
       response = this.responseOptions.hot
     } else if (userGuess <= this.number + 19 && userGuess >= this.number - 19) {

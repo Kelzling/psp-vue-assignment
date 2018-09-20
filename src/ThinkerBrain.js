@@ -102,6 +102,6 @@ class ThinkerBrain extends Brain { // eslint-disable-line no-unused-vars
     }
     // add the guess and response to the beginning of the history array (so it will display the most recent guess at the top of the history)
     this.guessHistory.unshift({guess: userGuess, message: response})
-    return {message: response, gameState: this.gameState}
+    return this.gameState
   }
 }
