@@ -19,6 +19,10 @@ Vue.component('version-btn', {
   template: '<input type="button" class="versionBtn" id="gameNum" v-bind:value="gameNum" @click="method">'
 })
 
+Vue.component('game', {
+  template: '<div class="game-container"><game-instructions v-bind="{instructions}"></game-instructions><slot></slot><ul class="history"><li v-for="item in history">{{ item }}</li></ul></div>'
+})
+
 // main function to be run after the initial HTML has loaded
 function main () { // eslint-disable-line no-unused-vars
   var controller = new Vue({ // eslint-disable-line no-unused-vars
