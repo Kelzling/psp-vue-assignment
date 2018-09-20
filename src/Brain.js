@@ -1,12 +1,14 @@
-class Brain {
-  constructor() {
+/* global VERBOSE */
+
+class Brain { // eslint-disable-line no-unused-vars
+  constructor () {
     this.guessCount = 0
     this.gameState = 'start-up'
     this.guessHistory = []
     this.instructions = ''
     this.buttons = []
   }
-  
+
   get formattedHistory () {
     // basic version for consistent interface purposes
     let output = ''
@@ -15,7 +17,7 @@ class Brain {
     }
     return output
   }
-  
+
   startGame () {
     this.guessCount = 0
     this.gameState = 'in-progress'

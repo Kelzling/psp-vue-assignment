@@ -1,4 +1,4 @@
-/* global Vue, ThinkerBrain, GuesserBrain, HotColdGuesserBrain */
+/* global Vue, ThinkerBrain, GuesserBrain, HotColdGuesserBrain, HotColdThinkerBrain */
 
 // global vars for debugging etc
 var VERBOSE = true // eslint-disable-line no-unused-vars

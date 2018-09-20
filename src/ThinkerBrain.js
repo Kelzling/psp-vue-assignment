@@ -1,4 +1,4 @@
-/* global VERBOSE */
+/* global VERBOSE, Brain */
 
 class ThinkerBrain extends Brain { // eslint-disable-line no-unused-vars
   constructor () {

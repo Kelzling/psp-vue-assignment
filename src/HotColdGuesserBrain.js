@@ -1,7 +1,7 @@
 /* global VERBOSE, GuesserBrain */
 
 class HotColdGuesserBrain extends GuesserBrain { // eslint-disable-line no-unused-vars
-  constructor() {
+  constructor () {
     super()
     this.instructions = "The game will guess your number! Think of a number between 0 and 99. The game will output it's guess and you need to tell it if it's COLD (more than 40 from the target number), COOL (within 20-39 of the target number), WARM (within 10-19 of the target number), HOT (within 9 of the target number), or correct. Don't lie though, or the game will call you out!"
     this.buttons = ['Start Game', 'Restart Game?', 'Hot', 'Warm', 'Cool', 'Cold', 'Correct']

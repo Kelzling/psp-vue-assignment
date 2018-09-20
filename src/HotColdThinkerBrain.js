@@ -1,10 +1,12 @@
-class HotColdThinkerBrain extends ThinkerBrain {
+/* global ThinkerBrain */
+
+class HotColdThinkerBrain extends ThinkerBrain { // eslint-disable-line no-unused-vars
   constructor () {
     super()
     this.instructions = 'You guess the number! The game will generate a random number between 0 and 99. Enter your guess in the box below and the game will tell you if you are COLD (more than 40 from the target number), COOL (within 20-39 of the target number), WARM (within 10-19 of the target number), or HOT (within 9 of the target number).'
     this.responseOptions = {hot: 'HOT', warm: 'WARM', cool: 'COOL', cold: 'COLD'}
   }
-  
+
   computerGuess (userGuess) {
     let response = ''
     if (userGuess === this.number) {
