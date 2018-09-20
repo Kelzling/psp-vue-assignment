@@ -28,7 +28,7 @@ function main () { // eslint-disable-line no-unused-vars
       // other variables
       buttons: [{value: 'Start Game'}, {value: 'Submit Guess'}, {value: 'Restart Game?'}],
       userInput: '',
-      myBrain: new ThinkerBrain('HighLow', {tooHigh: 'Try lower!', tooLow: 'Try higher!'})
+      myBrain: new ThinkerBrain()
     },
     methods: {
       swapButton: function (newBtn) {
@@ -72,7 +72,7 @@ function main () { // eslint-disable-line no-unused-vars
       // other variables
       buttons: [{value: 'Start Game'}, {value: 'Submit Guess'}, {value: 'Restart Game?'}],
       userInput: '',
-      myBrain: new ThinkerBrain('HotCold', {hot: 'HOT', warm: 'WARM', cool: 'COOL', cold: 'COLD'})
+      myBrain: new HotColdThinkerBrain()
     },
     methods: {
       swapButton: function (newBtn) {

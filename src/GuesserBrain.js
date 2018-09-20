@@ -1,14 +1,14 @@
-/* global VERBOSE */
+/* global VERBOSE, Brain */
 
-class GuesserBrain { // eslint-disable-line no-unused-vars
+class GuesserBrain extends Brain { // eslint-disable-line no-unused-vars
   constructor () {
+    super()
     this.guess = 0
-    this.guessCount = 0
-    this.guessHistory = []
-    this.gameState = 'start-up'
     this.upperBound = 99
     this.lowerBound = 0
     this.lieResponse = "You lied to me! Nothing makes sense! I don't want to play any more. :("
+    this.instructions = "The game will guess your number! Think of a number between 0 and 99. The game will output it's guess and you need to tell it if it's too high, too low, or correct. Don't lie though, or the game will call you out!"
+    this.buttons = ['Start Game', 'Restart Game?', 'Higher', 'Correct', 'Lower']
   }
 
   get winResponse () {
@@ -35,14 +35,12 @@ class GuesserBrain { // eslint-disable-line no-unused-vars
   }
 
   startGame () {
+    super.startGame()
     this.guess = 0
-    this.guessCount = 0
-    this.guessHistory = []
-    this.gameState = 'start-up'
     this.upperBound = 99
     this.lowerBound = 0
     if (VERBOSE) {
-      console.log(`Guess: ${this.guess}, Upper Bound: ${this.upperBound}, Lower Bound: ${this.lowerBound}, history: ${this.guessHistory}, Guess Count: ${this.guessCount}`)
+      console.log(`Guess: ${this.guess}, Upper Bound: ${this.upperBound}, Lower Bound: ${this.lowerBound}`)
     }
     this.computerGuess()
     return this.guess

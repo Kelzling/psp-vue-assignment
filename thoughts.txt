@@ -1,7 +1,7 @@
 Vague ideas:
 
-Make a collaboration diagram when doing the refactoring for t3 and 4
 is it possible to make a start game function that takes an argument of an array of objects, where the objects contain the name of each attribute that needs to be reinitialised and it's default value. function iterates over the array setting object.attribute to object.default. would make for a nice reusable startGame function.
 do split hotcoldthinker and highlowthinker into separate classes when doing later refactoring
 each game class will store it's own objects containing the responses, reinitialisation attributes, etc. Do Brain -> HighLow Guesser/Thinker -> HotCold Guesser/Thinker ?
 use JSON object cloning to reduce vue object duplication
+use components to reduce front end duplication more? (use slots for the differences between the games)

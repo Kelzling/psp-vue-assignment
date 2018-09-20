@@ -1,13 +1,12 @@
 /* global VERBOSE */
 
-class ThinkerBrain { // eslint-disable-line no-unused-vars
-  constructor (newGameType, newResponseOptions) {
-    this.gameType = newGameType
-    this.responseOptions = newResponseOptions
-    this.gameState = 'start-up'
+class ThinkerBrain extends Brain { // eslint-disable-line no-unused-vars
+  constructor () {
+    super()
+    this.instructions = 'You guess the number! The game will generate a random number between 0 and 99. Enter your guess in the box below and the game will tell you if your guess is too high or too low!'
+    this.responseOptions = {tooHigh: 'Try lower!', tooLow: 'Try higher!'}
+    this.buttons = ['Start Game', 'Submit Guess', 'Restart Game?']
     this.number = 0
-    this.guessCount = 0
-    this.guessHistory = []
   }
 
   get winResponse () {
@@ -39,17 +38,12 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
 
   startGame () {
     // (re)set game variables and generate random number
-    this.guessCount = 0
-    this.guessHistory = []
-    // this.number = Math.round(Math.random() * 100)
-    this.number = 50
-    this.gameState = 'in-progress'
+    super.startGame()
+    this.number = Math.round(Math.random() * 100)
+    // this.number = 50
     if (VERBOSE) {
       // verbose logging for testing purposes
-      console.log(`History: ${this.guessHistory}
-      guessCount: ${this.guessCount}
-      random number: ${this.number}
-      game state: ${this.gameState}`)
+      console.log(`random number: ${this.number}`)
     }
   }
 
@@ -72,7 +66,7 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
     return isValid
   }
 
-  highLowGuess (userGuess) {
+  computerGuess (userGuess) {
     let response = ''
     if (userGuess > this.number) {
       // if guess is too high
@@ -91,24 +85,6 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
     return response
   }
 
-  hotColdGuess (userGuess) {
-    let response = ''
-    if (userGuess === this.number) {
-      // if guess is correct
-      response = this.winResponse
-      this.gameState = 'finished'
-    } else if (userGuess <= this.number + 9 && userGuess >= this.number - 9) {
-      response = this.responseOptions.hot
-    } else if (userGuess <= this.number + 19 && userGuess >= this.number - 19) {
-      response = this.responseOptions.warm
-    } else if (userGuess <= this.number + 39 && userGuess >= this.number - 39) {
-      response = this.responseOptions.cool
-    } else {
-      response = this.responseOptions.cold
-    }
-    return response
-  }
-
   turnHandler (userInput) {
     // function called by Vue, which passes the user input in it's raw form
     let userGuess = this.processInput(userInput)
@@ -119,17 +95,13 @@ class ThinkerBrain { // eslint-disable-line no-unused-vars
       if (VERBOSE) {
         console.log(`Guess Count: ${this.guessCount}`)
       }
-      if (this.gameType === 'HighLow') {
-        response = this.highLowGuess(userGuess)
-      } else if (this.gameType === 'HotCold') {
-        response = this.hotColdGuess(userGuess)
-      }
-      // add the guess and response to the beginning of the history array (so it will display the most recent guess at the top of the history)
-      this.guessHistory.unshift({guess: userGuess, message: response})
+      response = this.computerGuess(userGuess)
     } else {
       // else if input was not a valid guess
       response = 'Please Enter a number between 0-99'
     }
+    // add the guess and response to the beginning of the history array (so it will display the most recent guess at the top of the history)
+    this.guessHistory.unshift({guess: userGuess, message: response})
     return {message: response, gameState: this.gameState}
   }
 }
